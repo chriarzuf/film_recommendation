@@ -1,0 +1,124 @@
+--Preprocessing 
+
+CREATE OR REPLACE TABLE tmdb_dataset.film_extended (
+    id INT,
+    title STRING(255),
+    original_title STRING(255),
+    release_date DATE,
+    popularity FLOAT64,
+    vote_average FLOAT64,
+    director STRING(255),
+    actor1 STRING(255),
+    actor2 STRING(255),
+    actor3 STRING(255),
+    actor4 STRING(255),
+    actor5 STRING(255),
+    War BOOL DEFAULT FALSE,
+    Adventure BOOL DEFAULT FALSE,
+    Fantasy BOOL DEFAULT FALSE,
+    Animation BOOL DEFAULT FALSE,
+    Drama BOOL DEFAULT FALSE,
+    TV_Movie BOOL DEFAULT FALSE,
+    Horror BOOL DEFAULT FALSE,
+    Action BOOL DEFAULT FALSE,
+    Music BOOL DEFAULT FALSE,
+    Comedy BOOL DEFAULT FALSE,
+    History BOOL DEFAULT FALSE,
+    Western BOOL DEFAULT FALSE,
+    Mistery BOOL DEFAULT FALSE,
+    Thriller BOOL DEFAULT FALSE,
+    Crime BOOL DEFAULT FALSE,
+    Documentary BOOL DEFAULT FALSE,
+    Science_Fiction BOOL DEFAULT FALSE,
+    Romance BOOL DEFAULT FALSE,
+    Family BOOL DEFAULT FALSE
+);  
+
+-- Popolamento della nuova tabella 'film_extended'
+-- Questa è una logica più complessa che dipende dalla struttura dei tuoi dati originali
+-- e dal DBMS che stai usando. Ecco un esempio concettuale per MySQL:
+
+INSERT INTO `film-recommendation-1.tmdb_dataset.film_extended` (id, title, original_title, release_date, popularity, vote_average)
+SELECT id, title, original_title, release_date, popularity, vote_average
+FROM `tmdb_dataset.movies`
+WHERE vote_count>50;
+--UPDATE `film-recommendation-1.tmdb_dataset.film_extended`
+--SET director = name 
+--FROM `tmdb_dataset.crew`  
+--WHERE id=movie_id;
+
+UPDATE tmdb_dataset.film_extended
+SET War = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=10752);
+
+UPDATE tmdb_dataset.film_extended
+SET Adventure = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=12);
+
+UPDATE tmdb_dataset.film_extended
+SET Fantasy = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=14);
+
+UPDATE tmdb_dataset.film_extended
+SET Animation = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=16);
+
+UPDATE tmdb_dataset.film_extended
+SET Drama = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=18);
+
+UPDATE tmdb_dataset.film_extended
+SET TV_Movie = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=10770);
+
+UPDATE tmdb_dataset.film_extended
+SET Horror = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=27);
+
+UPDATE tmdb_dataset.film_extended
+SET Action = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=28);
+
+UPDATE tmdb_dataset.film_extended
+SET Music = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=10402);
+
+UPDATE tmdb_dataset.film_extended
+SET Comedy = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=35);
+
+UPDATE tmdb_dataset.film_extended
+SET History = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=36);
+
+UPDATE tmdb_dataset.film_extended
+SET Western = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=37);
+
+UPDATE tmdb_dataset.film_extended
+SET Mistery = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=9648);
+
+UPDATE tmdb_dataset.film_extended
+SET Thriller = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=53);
+
+UPDATE tmdb_dataset.film_extended
+SET Crime = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=80);
+
+UPDATE tmdb_dataset.film_extended
+SET Documentary = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=99);
+
+UPDATE tmdb_dataset.film_extended
+SET Science_Fiction = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=878);
+
+UPDATE tmdb_dataset.film_extended
+SET Romance = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=10749);
+
+UPDATE tmdb_dataset.film_extended
+SET Family = TRUE
+WHERE id IN (SELECT movie_id FROM `tmdb_dataset.movie_genres` WHERE genre_id=10751);
