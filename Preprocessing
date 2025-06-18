@@ -38,11 +38,11 @@ CREATE OR REPLACE TABLE tmdb_dataset.film_extended (
 -- Questa è una logica più complessa che dipende dalla struttura dei tuoi dati originali
 -- e dal DBMS che stai usando. Ecco un esempio concettuale per MySQL:
 
-INSERT INTO `film-recommendation-1.tmdb_dataset.film_extended` (id, title, original_title, release_date, popularity, vote_average)
+INSERT INTO `film-recommendation-2.tmdb_dataset.film_extended` (id, title, original_title, release_date, popularity, vote_average)
 SELECT id, title, original_title, release_date, popularity, vote_average
 FROM `tmdb_dataset.movies`
 WHERE vote_count>50;
---UPDATE `film-recommendation-1.tmdb_dataset.film_extended`
+--UPDATE `film-recommendation-2.tmdb_dataset.film_extended`
 --SET director = name 
 --FROM `tmdb_dataset.crew`  
 --WHERE id=movie_id;
